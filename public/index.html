@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameCode Lab - 游戏化编程学习平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .feature {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .feature-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .cta {
+      margin-top: 3rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .status {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 GameCode Lab</h1>
+    <p class="subtitle">通过游戏化方式学习 HTML5 编程</p>
+    
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">闯关学习</h3>
+        <p>5大关卡，循序渐进掌握编程技能</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <h3 class="feature-title">AI助教</h3>
+        <p>DeepSeek AI 实时指导和纠错</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏆</div>
+        <h3 class="feature-title">成就系统</h3>
+        <p>收集徽章，挑战排行榜</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💻</div>
+        <h3 class="feature-title">在线编辑器</h3>
+        <p>即时预览代码效果</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="#" class="btn" onclick="alert('平台正在开发中，敬请期待！'); return false;">开始学习</a>
+    </div>
+
+    <div class="status">
+      <p><strong>📢 项目状态：</strong>核心功能开发完成，正在部署到生产环境</p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem;">技术栈：Next.js 14 + TypeScript + Supabase + DeepSeek AI</p>
+    </div>
+  </div>
+
+  <script>
+    // 简单的动画效果
+    document.querySelectorAll('.feature').forEach((feature, index) => {
+      feature.style.animation = `fadeIn 0.5s ease-in ${index * 0.1}s forwards`;
+      feature.style.opacity = '0';
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
+

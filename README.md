@@ -275,9 +275,9 @@ chore: 构建/工具
 
 ### 开发阶段
 - [x] 创建项目文档（README.md、PRD.md、架构设计文档） - 2025-10-14
-- [ ] 初始化Next.js 14项目结构（TypeScript + Tailwind CSS + shadcn/ui）
-- [ ] 配置Supabase数据库schema（用户、课程、任务、积分、作品、成就等表）
-- [ ] 实现用户认证系统（游客试用、注册登录、权限管理）
+- [x] 初始化Next.js 14项目结构（TypeScript + Tailwind CSS + shadcn/ui） - 2025-10-14
+- [x] 配置Supabase数据库schema（用户、课程、任务、积分、作品、成就等表） - 2025-10-14
+- [ ] 实现用户认证系统（游客试用、注册登录、权限管理）- 进行中
 - [ ] 开发课程与任务系统（5个Level的闯关体系）
 - [ ] 实现在线代码编辑器与沙盒环境（HTML/CSS/JS三栏编辑器）
 - [ ] 集成DeepSeek AI助教功能（代码讲解、纠错、对话指导）
@@ -290,6 +290,8 @@ chore: 构建/工具
 
 ### 部署阶段
 - [ ] 配置Netlify部署并上线
+
+> 💡 **项目进度**: 30% 完成 | 查看详细状态报告: [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 
 ## 🤝 贡献指南
 
