@@ -1,0 +1,174 @@
+{
+  "timestamp": "2025-11-07T16:03:54.139Z",
+  "environment": "https://aicodegamecursor.vercel.app",
+  "summary": {
+    "total": 27,
+    "passed": 1,
+    "failed": 26,
+    "passRate": "3.70%"
+  },
+  "results": [
+    {
+      "category": "前端页面",
+      "name": "首页",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "登录页",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "注册页",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "用户仪表板",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "课程列表",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "在线编辑器",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "项目展示",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "排行榜",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "服务条款",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "前端页面",
+      "name": "隐私政策",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "健康检查",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "课程列表",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "课程详情",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "项目列表",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "项目分页",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "排行榜",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "排行榜（全部）",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "API POST",
+      "name": "AI代码讲解",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "响应头",
+      "name": "Content-Type存在",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "响应头",
+      "name": "API返回JSON格式",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "性能",
+      "name": "首页加载时间",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "性能",
+      "name": "API响应时间",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "错误处理",
+      "name": "404页面",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "错误处理",
+      "name": "无效课程ID",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "数据库",
+      "name": "Postgres连接状态",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "安全",
+      "name": "HTTPS启用",
+      "passed": true,
+      "details": "Enabled"
+    },
+    {
+      "category": "安全",
+      "name": "SSL证书",
+      "passed": false,
+      "details": ""
+    }
+  ]
+}
