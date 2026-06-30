@@ -4,7 +4,7 @@
 
 export const siteConfig = {
   name: 'GameCode Lab',
-  subtitle: '北京信息科技大学 · 大学生编程平台',
+  subtitle: '信工实习 · AI编程 · 北京信息科技大学 · 大学生编程平台',
   description:
     '信工实习 · AI编程 — 面向北京信息科技大学大学生的游戏化 HTML5 编程教育平台，通过 AI 助教和游戏化机制让编程学习更有趣',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',

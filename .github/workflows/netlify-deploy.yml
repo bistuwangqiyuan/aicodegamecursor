@@ -1,0 +1,26 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Deploy to Netlify
+        run: npx netlify-cli deploy --build --prod --site=8b4b1688-7e64-4d18-b23a-40a729d57e4c
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NEXT_PUBLIC_SITE_URL: https://aicodegamecursor.netlify.app
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}

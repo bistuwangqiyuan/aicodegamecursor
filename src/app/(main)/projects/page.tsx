@@ -6,8 +6,8 @@ import { Heart, Eye } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `作品展示 - ${siteConfig.name}`,
-  description: '浏览信科学子的优秀编程作品',
+  title: `信科作品墙 · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  description: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} — 浏览信科学子优秀编程作品`,
 };
 
 export default function ProjectsPage() {

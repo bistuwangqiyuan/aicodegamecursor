@@ -8,7 +8,10 @@ import { siteConfig } from '@/config/site';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} - ${siteConfig.subtitle}`,
+  title: {
+    default: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} · ${siteConfig.name}`,
+    template: `%s · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  },
   description: siteConfig.description,
   keywords: [
     '信工实习',
@@ -26,7 +29,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: `${siteConfig.university.fullName} · ${siteConfig.name}` }],
   openGraph: {
-    title: `${siteConfig.name} - ${siteConfig.subtitle}`,
+    title: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} · ${siteConfig.name}`,
     description: siteConfig.description,
     type: 'website',
   },
@@ -48,4 +51,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -7,8 +7,8 @@ import { TestAccountBanner } from '@/components/layout/test-account-banner';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `注册 - ${siteConfig.name}`,
-  description: `注册 ${siteConfig.name} 账户，开始你的编程学习之旅`,
+  title: `注册 · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  description: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} — 注册 ${siteConfig.name}`,
 };
 
 export default function RegisterPage() {

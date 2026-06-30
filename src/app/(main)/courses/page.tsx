@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `课程列表 - ${siteConfig.name}`,
-  description: `${siteConfig.university.shortName}大学生 Web 编程课程`,
+  title: `课程中心 · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  description: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} — ${siteConfig.university.shortName}大学生 Web 编程课程`,
 };
 
 export default function CoursesPage() {

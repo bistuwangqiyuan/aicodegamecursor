@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `代码实验场 - ${siteConfig.name}`,
-  description: '在线编写和运行 HTML、CSS、JavaScript 代码',
+  title: `代码实验场 · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  description: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} — 在线编写运行 HTML/CSS/JavaScript`,
 };
 
 export default function PlaygroundPage() {

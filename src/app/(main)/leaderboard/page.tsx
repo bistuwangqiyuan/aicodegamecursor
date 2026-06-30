@@ -6,8 +6,8 @@ import { Trophy, Crown } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `信科编程达人榜 - ${siteConfig.name}`,
-  description: '查看信科编程学习排行榜',
+  title: `信科编程达人榜 · ${siteConfig.project.internship} · ${siteConfig.project.aiProgramming}`,
+  description: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} — 信科编程学习排行榜`,
 };
 
 export default function LeaderboardPage() {
