@@ -191,7 +191,9 @@ apis.forEach(api => {
       if (passed) {
         try {
           const json = JSON.parse(response.body);
-          const hasData = json.success !== undefined;
+          const hasData =
+            json.success !== undefined ||
+            (api.path === '/api/health' && json.status === 'healthy');
           logTest('API端点', api.name, hasData, `${duration}ms, JSON valid`);
         } catch (e) {
           logTest('API端点', api.name, false, 'Invalid JSON response');
