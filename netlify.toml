@@ -6,5 +6,6 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_FLAGS = "--include=dev"
   NEXT_PUBLIC_SITE_URL = "https://aicodegamecursor.netlify.app"
   AUTH_SECRET = "bistu-gamecode-lab-production-auth-secret-32chars"
