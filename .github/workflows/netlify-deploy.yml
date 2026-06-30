@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ secrets.NETLIFY_AUTH_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -18,7 +19,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Deploy to Netlify
+      - name: Trigger Netlify remote build
         run: npx netlify-cli deploy --build --prod --site=8b4b1688-7e64-4d18-b23a-40a729d57e4c
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

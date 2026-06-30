@@ -1,4 +1,4 @@
-import { Pool } from '@neondatabase/serverless';
+import { neon } from '@neondatabase/serverless';
 
 export function getConnectionString() {
   return (
@@ -10,18 +10,37 @@ export function getConnectionString() {
   );
 }
 
+function splitSqlStatements(script) {
+  return script
+    .split(/;\s*(?:\r?\n|$)/)
+    .map((part) =>
+      part
+        .split('\n')
+        .filter((line) => !line.trim().startsWith('--'))
+        .join('\n')
+        .trim()
+    )
+    .filter(Boolean);
+}
+
 export async function runSqlScript(script) {
   const connectionString = getConnectionString();
   if (!connectionString) {
+    const keys = [
+      'NETLIFY_DB_URL',
+      'NETLIFY_DATABASE_URL',
+      'DATABASE_URL',
+      'POSTGRES_URL',
+    ];
     throw new Error(
-      'Database connection string not found. Set NETLIFY_DB_URL, NETLIFY_DATABASE_URL, DATABASE_URL, or POSTGRES_URL.'
+      `Database connection string not found (checked: ${keys.join(', ')}). Link Neon in Netlify or set DATABASE_URL.`
     );
   }
 
-  const pool = new Pool({ connectionString });
-  try {
-    await pool.query(script);
-  } finally {
-    await pool.end();
+  const sql = neon(connectionString);
+  const statements = splitSqlStatements(script);
+
+  for (const statement of statements) {
+    await sql(statement);
   }
 }
