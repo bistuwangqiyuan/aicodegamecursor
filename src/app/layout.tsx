@@ -2,17 +2,32 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/providers';
+import { BrandTagsBar } from '@/components/layout/brand-tags';
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'GameCode Lab - 游戏化编程教育平台',
-  description: '通过游戏化机制和AI助教，让编程学习更有趣、更高效',
-  keywords: ['编程教育', 'HTML5', 'CSS', 'JavaScript', 'AI教学', '游戏化学习'],
-  authors: [{ name: 'GameCode Lab Team' }],
+  title: `${siteConfig.name} - ${siteConfig.subtitle}`,
+  description: siteConfig.description,
+  keywords: [
+    '信工实习',
+    'AI编程',
+    '北京信息科技大学',
+    '北信科',
+    '大学生',
+    '编程教育',
+    'HTML5',
+    'CSS',
+    'JavaScript',
+    'AI教学',
+    '游戏化学习',
+    '信科',
+  ],
+  authors: [{ name: `${siteConfig.university.fullName} · ${siteConfig.name}` }],
   openGraph: {
-    title: 'GameCode Lab - 游戏化编程教育平台',
-    description: '通过游戏化机制和AI助教，让编程学习更有趣、更高效',
+    title: `${siteConfig.name} - ${siteConfig.subtitle}`,
+    description: siteConfig.description,
     type: 'website',
   },
 };
@@ -25,7 +40,10 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <BrandTagsBar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

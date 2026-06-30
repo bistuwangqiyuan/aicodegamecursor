@@ -9,8 +9,10 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(50) UNIQUE NOT NULL,
   display_name VARCHAR(100),
   avatar_url TEXT,
-  role VARCHAR(20) DEFAULT 'user',
+  role VARCHAR(20) DEFAULT 'student'
+    CHECK (role IN ('guest', 'student', 'teacher', 'admin')),
   is_guest BOOLEAN DEFAULT false,
+  last_login_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

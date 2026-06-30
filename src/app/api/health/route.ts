@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
+import { siteConfig } from '@/config/site';
 
 export async function GET() {
   try {
@@ -10,7 +11,8 @@ export async function GET() {
       status: 'healthy',
       database: 'connected',
       timestamp: result.rows[0].time,
-      message: 'GameCode Lab API is running'
+      message: `${siteConfig.project.internship} · ${siteConfig.project.aiProgramming} · ${siteConfig.name} API is running`,
+      project: siteConfig.project.fullTitle,
     });
   } catch (error) {
     return NextResponse.json(

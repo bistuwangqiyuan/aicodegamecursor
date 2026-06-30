@@ -65,6 +65,10 @@ const config: Config = {
           gold: 'hsl(45, 100%, 51%)',
           platinum: 'hsl(180, 100%, 50%)',
         },
+        bistu: {
+          red: 'hsl(var(--bistu-red))',
+          orange: 'hsl(var(--bistu-orange))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

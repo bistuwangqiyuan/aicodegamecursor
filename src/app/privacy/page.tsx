@@ -1,12 +1,19 @@
 'use client';
 
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { BrandTags } from '@/components/layout/brand-tags';
+import { siteConfig } from '@/config/site';
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <SiteHeader />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
           隐私政策
         </h1>
+        <BrandTags className="mb-8" size="md" />
         
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -18,7 +25,7 @@ export default function PrivacyPage() {
               1. 引言
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              GameCode Lab（&ldquo;我们&rdquo;）重视您的隐私。本隐私政策说明我们如何收集、使用、存储和保护您的个人信息。
+              GameCode Lab（{siteConfig.project.internship} · {siteConfig.project.aiProgramming} · 北京信息科技大学大学生编程平台）（&ldquo;我们&rdquo;）重视您的隐私。本隐私政策说明我们如何收集、使用、存储和保护您的个人信息。
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               使用我们的服务即表示您同意本政策中描述的数据实践。
@@ -154,7 +161,7 @@ export default function PrivacyPage() {
               <li>反对特定数据使用</li>
             </ul>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              要行使这些权利，请通过support@gamecodelab.com联系我们。
+              要行使这些权利，请通过 support@bistu.edu.cn 联系我们。
             </p>
           </section>
 
@@ -208,10 +215,10 @@ export default function PrivacyPage() {
               如对本隐私政策有任何疑问或请求，请联系：
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-2">
-              Email: privacy@gamecodelab.com
+              Email: privacy@bistu.edu.cn
             </p>
             <p className="text-gray-600 dark:text-gray-300">
-              Support: support@gamecodelab.com
+              Support: support@bistu.edu.cn
             </p>
           </section>
         </div>
@@ -225,6 +232,7 @@ export default function PrivacyPage() {
           </a>
         </div>
       </div>
+      <SiteFooter />
     </div>
   );
 }

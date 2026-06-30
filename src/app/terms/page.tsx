@@ -1,12 +1,19 @@
 'use client';
 
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { BrandTags } from '@/components/layout/brand-tags';
+import { siteConfig } from '@/config/site';
+
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <SiteHeader />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
           服务条款
         </h1>
+        <BrandTags className="mb-8" size="md" />
         
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -18,7 +25,7 @@ export default function TermsPage() {
               1. 接受条款
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              欢迎使用GameCode Lab！通过访问和使用本平台，您同意遵守以下服务条款。如果您不同意这些条款，请不要使用本服务。
+              欢迎使用 GameCode Lab（{siteConfig.project.internship} · {siteConfig.project.aiProgramming} · 北京信息科技大学大学生编程平台）！通过访问和使用本平台，您同意遵守以下服务条款。如果您不同意这些条款，请不要使用本服务。
             </p>
           </section>
 
@@ -27,7 +34,7 @@ export default function TermsPage() {
               2. 服务描述
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              GameCode Lab是一个游戏化的编程学习平台，提供：
+              GameCode Lab 是北京信息科技大学 {siteConfig.project.internship} · {siteConfig.project.aiProgramming} 游戏化编程学习平台，提供：
             </p>
             <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 mb-4 space-y-2">
               <li>在线HTML、CSS和JavaScript编程课程</li>
@@ -75,7 +82,7 @@ export default function TermsPage() {
               5. 知识产权
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              5.1 平台上的所有内容（包括但不限于课程材料、设计、代码）均为GameCode Lab或其许可方所有。
+              5.1 平台上的所有内容（包括但不限于课程材料、设计、代码）均为北京信息科技大学 GameCode Lab 或其许可方所有。
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               5.2 您保留对自己创建的项目代码的所有权，但授予我们展示和分享的权利。
@@ -144,7 +151,7 @@ export default function TermsPage() {
               如对这些条款有任何疑问，请通过以下方式联系我们：
             </p>
             <p className="text-gray-600 dark:text-gray-300">
-              Email: support@gamecodelab.com
+              Email: support@bistu.edu.cn
             </p>
           </section>
         </div>
@@ -158,6 +165,7 @@ export default function TermsPage() {
           </a>
         </div>
       </div>
+      <SiteFooter />
     </div>
   );
 }
