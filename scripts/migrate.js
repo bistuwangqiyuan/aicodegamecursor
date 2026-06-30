@@ -6,6 +6,12 @@ async function migrate() {
   try {
     console.log('🚀 开始数据库迁移...');
 
+    const resetPath = path.join(process.cwd(), 'db', 'reset.sql');
+    if (fs.existsSync(resetPath)) {
+      console.log('🗑️  清理旧表结构...');
+      await runSqlScript(fs.readFileSync(resetPath, 'utf-8'));
+    }
+
     const schemaPath = path.join(process.cwd(), 'db', 'schema.sql');
     const schema = fs.readFileSync(schemaPath, 'utf-8');
 

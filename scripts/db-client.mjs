@@ -10,17 +10,82 @@ export function getConnectionString() {
   );
 }
 
-function splitSqlStatements(script) {
+function removeComments(script) {
   return script
-    .split(/;\s*(?:\r?\n|$)/)
-    .map((part) =>
-      part
-        .split('\n')
-        .filter((line) => !line.trim().startsWith('--'))
-        .join('\n')
-        .trim()
-    )
-    .filter(Boolean);
+    .split('\n')
+    .filter((line) => !line.trim().startsWith('--'))
+    .join('\n');
+}
+
+function splitSqlStatements(script) {
+  const cleaned = removeComments(script);
+  const statements = [];
+  let current = '';
+  let i = 0;
+  let dollarTag = null;
+  let inSingleQuote = false;
+
+  while (i < cleaned.length) {
+    const ch = cleaned[i];
+
+    if (dollarTag === null && !inSingleQuote && ch === '$') {
+      const match = cleaned.slice(i).match(/^(\$[A-Za-z0-9_]*\$)/);
+      if (match) {
+        dollarTag = match[1];
+        current += match[1];
+        i += match[1].length;
+        continue;
+      }
+    }
+
+    if (dollarTag !== null && cleaned.slice(i, i + dollarTag.length) === dollarTag) {
+      current += dollarTag;
+      i += dollarTag.length;
+      dollarTag = null;
+      continue;
+    }
+
+    if (dollarTag === null) {
+      if (inSingleQuote) {
+        if (ch === "'") {
+          if (cleaned[i + 1] === "'") {
+            current += "''";
+            i += 2;
+            continue;
+          }
+          inSingleQuote = false;
+          current += ch;
+          i++;
+          continue;
+        }
+        current += ch;
+        i++;
+        continue;
+      }
+
+      if (ch === "'") {
+        inSingleQuote = true;
+        current += ch;
+        i++;
+        continue;
+      }
+    }
+
+    if (dollarTag === null && !inSingleQuote && ch === ';') {
+      const stmt = current.trim();
+      if (stmt) statements.push(stmt);
+      current = '';
+      i++;
+      continue;
+    }
+
+    current += ch;
+    i++;
+  }
+
+  const tail = current.trim();
+  if (tail) statements.push(tail);
+  return statements;
 }
 
 export async function runSqlScript(script) {
