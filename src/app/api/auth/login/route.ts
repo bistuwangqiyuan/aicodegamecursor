@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getUserByEmail } from '@/lib/db/queries';
 import { verifyPassword } from '@/lib/auth/password';
-import { createSessionToken, COOKIE_NAME } from '@/lib/auth/session';
-import { sql } from '@vercel/postgres';
+import { createSessionToken, COOKIE_NAME, type SessionUser } from '@/lib/auth/session';
+import { sql } from '@/lib/db/client';
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
@@ -18,20 +20,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '邮箱或密码错误' }, { status: 401 });
     }
 
-    const valid = await verifyPassword(password, user.password_hash);
+    const valid = await verifyPassword(password, String(user.password_hash));
     if (!valid) {
       return NextResponse.json({ error: '邮箱或密码错误' }, { status: 401 });
     }
 
-    await sql`UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = ${user.id}`;
+    try {
+      await sql`UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = ${user.id}`;
+    } catch {
+      // Column may not exist before migration; login still succeeds
+    }
 
-    const sessionUser = {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      displayName: user.display_name || user.username,
-      role: user.role,
-      isGuest: user.is_guest,
+    const sessionUser: SessionUser = {
+      id: Number(user.id),
+      email: String(user.email),
+      username: String(user.username),
+      displayName: String(user.display_name || user.username),
+      role: String(user.role),
+      isGuest: Boolean(user.is_guest),
     };
 
     const token = await createSessionToken(sessionUser);

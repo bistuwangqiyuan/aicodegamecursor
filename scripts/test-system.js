@@ -7,7 +7,7 @@
 
 const https = require('https');
 
-const BASE_URL = 'https://aicodegamecursor.vercel.app';
+const BASE_URL = process.env.TEST_BASE_URL || 'https://aicodegamecursor.netlify.app';
 const TIMEOUT = 10000; // 10秒超时
 
 // 颜色输出

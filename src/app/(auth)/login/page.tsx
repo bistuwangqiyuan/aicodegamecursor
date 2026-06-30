@@ -58,6 +58,7 @@ function LoginForm() {
             width={48}
             height={48}
             className="mx-auto"
+            unoptimized
           />
         </div>
         <CardTitle className="text-2xl font-bold">欢迎回来</CardTitle>

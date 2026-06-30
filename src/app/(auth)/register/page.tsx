@@ -22,6 +22,7 @@ export default function RegisterPage() {
             width={48}
             height={48}
             className="mx-auto"
+            unoptimized
           />
         </div>
         <CardTitle className="text-2xl font-bold">创建账户</CardTitle>

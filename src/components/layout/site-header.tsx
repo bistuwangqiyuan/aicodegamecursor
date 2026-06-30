@@ -32,6 +32,7 @@ export function SiteHeader() {
             width={40}
             height={40}
             className="h-10 w-10"
+            unoptimized
           />
           <div className="hidden sm:block">
             <div className="text-lg font-bold leading-tight text-primary">

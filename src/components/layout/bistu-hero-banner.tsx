@@ -16,6 +16,7 @@ export function BistuHeroBanner({ className, showMotto = true }: BistuHeroBanner
         fill
         className="object-cover"
         priority
+        unoptimized
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-bistu-orange/10" />
       {showMotto && (

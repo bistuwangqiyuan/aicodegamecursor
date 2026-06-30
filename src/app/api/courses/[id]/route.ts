@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCourseById, getLessonsByCourseId } from '@/lib/db/queries';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   _request: Request,
   { params }: { params: { id: string } }

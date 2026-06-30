@@ -1,8 +1,4 @@
-import { sql } from '@vercel/postgres';
-
-export async function getDb() {
-  return sql;
-}
+import { sql } from '@/lib/db/client';
 
 // 用户相关
 export async function createUser(email: string, username: string, passwordHash: string) {

@@ -14,6 +14,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               alt={siteConfig.university.fullName}
               width={56}
               height={56}
+              unoptimized
             />
             <div>
               <div className="text-2xl font-bold">{siteConfig.name}</div>
@@ -37,6 +38,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               alt="比斯兔"
               width={64}
               height={80}
+              unoptimized
             />
             <div className="text-sm opacity-90">
               <p className="font-medium">吉祥物 · 比斯兔</p>

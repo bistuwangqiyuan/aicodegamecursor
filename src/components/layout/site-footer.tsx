@@ -15,6 +15,7 @@ export function SiteFooter() {
                 alt={siteConfig.university.fullName}
                 width={48}
                 height={48}
+                unoptimized
               />
               <div>
                 <div className="text-lg font-bold">{siteConfig.name}</div>

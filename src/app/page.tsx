@@ -35,6 +35,7 @@ export default function HomePage() {
                 alt={siteConfig.university.fullName}
                 width={80}
                 height={80}
+                unoptimized
               />
             </div>
             <div className="mb-6 flex flex-col items-center gap-3">

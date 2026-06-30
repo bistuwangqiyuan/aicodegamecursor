@@ -4,6 +4,9 @@ const nextConfig = {
   
   // 图片优化配置
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -28,9 +31,6 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
-  
-  // 输出配置（静态导出）
-  output: 'standalone',
   
   // 重定向
   async redirects() {

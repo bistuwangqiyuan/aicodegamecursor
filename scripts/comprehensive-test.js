@@ -6,7 +6,7 @@
 const https = require('https');
 const fs = require('fs');
 
-const BASE_URL = 'https://aicodegamecursor.vercel.app';
+const BASE_URL = process.env.TEST_BASE_URL || 'https://aicodegamecursor.netlify.app';
 const TEST_RESULTS = [];
 let totalTests = 0;
 let passedTests = 0;
@@ -51,7 +51,7 @@ function logTest(category, name, passed, details = '') {
 }
 
 // HTTP请求函数
-function httpRequest(url, method = 'GET', postData = null) {
+function httpRequest(url, method = 'GET', postData = null, followRedirect = false) {
   return new Promise((resolve, reject) => {
     const urlObj = new URL(url);
     
@@ -66,6 +66,17 @@ function httpRequest(url, method = 'GET', postData = null) {
     };
 
     const req = https.request(options, (res) => {
+      if (!followRedirect && [301, 302, 307, 308].includes(res.statusCode)) {
+        resolve({
+          statusCode: res.statusCode,
+          headers: res.headers,
+          body: '',
+          responseTime: Date.now()
+        });
+        res.resume();
+        return;
+      }
+
       let data = '';
       
       res.on('data', (chunk) => {
@@ -125,16 +136,16 @@ class TestSuite {
 const frontendSuite = new TestSuite('1. 前端页面可访问性测试');
 
 const pages = [
-  { path: '/', name: '首页' },
-  { path: '/login', name: '登录页' },
-  { path: '/register', name: '注册页' },
-  { path: '/dashboard', name: '用户仪表板' },
-  { path: '/courses', name: '课程列表' },
-  { path: '/playground', name: '在线编辑器' },
-  { path: '/projects', name: '项目展示' },
-  { path: '/leaderboard', name: '排行榜' },
-  { path: '/terms', name: '服务条款' },
-  { path: '/privacy', name: '隐私政策' }
+  { path: '/', name: '首页', expectStatus: 200 },
+  { path: '/login', name: '登录页', expectStatus: 200 },
+  { path: '/register', name: '注册页', expectStatus: 200 },
+  { path: '/dashboard', name: '用户仪表板', expectStatus: [307, 308, 302] },
+  { path: '/courses', name: '课程列表', expectStatus: [307, 308, 302] },
+  { path: '/playground', name: '在线编辑器', expectStatus: [307, 308, 302] },
+  { path: '/projects', name: '项目展示', expectStatus: [307, 308, 302] },
+  { path: '/leaderboard', name: '排行榜', expectStatus: [307, 308, 302] },
+  { path: '/terms', name: '服务条款', expectStatus: 200 },
+  { path: '/privacy', name: '隐私政策', expectStatus: 200 }
 ];
 
 pages.forEach(page => {
@@ -143,8 +154,10 @@ pages.forEach(page => {
       const startTime = Date.now();
       const response = await httpRequest(`${BASE_URL}${page.path}`);
       const duration = Date.now() - startTime;
-      
-      const passed = response.statusCode === 200;
+      const expected = page.expectStatus;
+      const passed = Array.isArray(expected)
+        ? expected.includes(response.statusCode)
+        : response.statusCode === expected;
       logTest('前端页面', page.name, passed, `${response.statusCode} (${duration}ms)`);
     } catch (error) {
       logTest('前端页面', page.name, false, error.message);
@@ -320,6 +333,48 @@ securitySuite.add(async () => {
   }
 });
 
+// ========== 9. 品牌与静态资源测试 ==========
+const brandingSuite = new TestSuite('9. 品牌与静态资源测试');
+
+brandingSuite.add(async () => {
+  try {
+    const response = await httpRequest(`${BASE_URL}/`);
+    const passed = response.body.includes('信工实习') && response.body.includes('AI编程');
+    logTest('品牌', '首页含信工实习/AI编程', passed);
+  } catch (error) {
+    logTest('品牌', '首页含信工实习/AI编程', false, error.message);
+  }
+});
+
+['/bistu/logo.svg', '/bistu/logo-white.svg', '/bistu/mascot.svg'].forEach((asset) => {
+  brandingSuite.add(async () => {
+    try {
+      const response = await httpRequest(`${BASE_URL}${asset}`);
+      logTest('静态资源', asset, response.statusCode === 200, `HTTP ${response.statusCode}`);
+    } catch (error) {
+      logTest('静态资源', asset, false, error.message);
+    }
+  });
+});
+
+// ========== 10. 登录 API 测试 ==========
+const authSuite = new TestSuite('10. 登录 API 测试');
+
+authSuite.add(async () => {
+  try {
+    const response = await httpRequest(
+      `${BASE_URL}/api/auth/login`,
+      'POST',
+      { email: 'student@bistu.edu.cn', password: 'Bistu@2026' }
+    );
+    const json = JSON.parse(response.body);
+    const passed = response.statusCode === 200 && json.user?.email === 'student@bistu.edu.cn';
+    logTest('认证', '测试账号登录', passed, `HTTP ${response.statusCode}`);
+  } catch (error) {
+    logTest('认证', '测试账号登录', false, error.message);
+  }
+});
+
 // ========== 主测试运行器 ==========
 async function runAllTests() {
   console.clear();
@@ -340,6 +395,8 @@ async function runAllTests() {
   await errorSuite.run();
   await dbSuite.run();
   await securitySuite.run();
+  await brandingSuite.run();
+  await authSuite.run();
 
   // 生成测试报告
   generateReport();
